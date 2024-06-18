@@ -5,4 +5,6 @@
     <color name="orange">#FF822E</color>
     <color name="neutral">#D9D9D9</color>
     <color name="light_brown">#F1E89F</color>
+
+    <color name="app_color_primary">#B5D169</color>
 </resources>

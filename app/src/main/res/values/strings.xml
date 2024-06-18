@@ -3,4 +3,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_next">NEXT</string>
+    <string name="text_detail_product">Detail Product</string>
+    <string name="text_number_count">1</string>
 </resources>
