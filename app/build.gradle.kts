@@ -55,4 +55,11 @@ dependencies {
 
     //viewpager
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
+
+    //retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //cardview
+    implementation ("androidx.cardview:cardview:1.0.0")
 }
