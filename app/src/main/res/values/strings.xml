@@ -3,4 +3,29 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_next">NEXT</string>
+    <string name="text_home">Home</string>
+    <string name="text_cart">Cart</string>
+    <string name="text_profile">Profile</string>
+    <string name="text_header_name">Hello, Syafira</string>
+    <string name="text_header_greeting">Mau buah apa hari ini?</string>
+    <string name="text_discount">Promo\nkhusus pengguna\nbaru</string>
+    <string name="text_discount_desc">Produk pilihan terbaik</string>
+    <string name="text_product_name">Produk</string>
+    <string name="text_product_greeting">Cobalah Buah Favorit, Segar dan\nSelalu Diperbarui!</string>
+    <string name="text_header_seeall">Produk</string>
+    <string name="text_header_cart">Keranjang</string>
+    <string name="text_total_price">Total Harga</string>
+    <string name="text_checkout">Pesan</string>
+    <string name="text_header_checkout">Konfirmasi Pesanan</string>
+    <string name="text_delivery_method">Metode Pengiriman</string>
+    <string name="rb_pick_up">Pick up</string>
+    <string name="delivery">Delivery</string>
+    <string name="text_payment_method">Metode Pembayaran</string>
+    <string name="rb_cash">Cash</string>
+    <string name="rb_payment">Payment</string>
+    <string name="shopping_summary">Ringkasan Pembayaran</string>
+    <string name="text_order">Pesanan</string>
+    <string name="text_detail_product">Detail Produk</string>
+    <string name="text_number_count">1</string>
+    <string name="text_header_detail">Detail Produk</string>
 </resources>
