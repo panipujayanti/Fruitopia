@@ -13,6 +13,7 @@ import com.group4.fruitopia.R
 import com.group4.fruitopia.apiclient.ApiClient
 import com.group4.fruitopia.apiservice.ApiService
 import com.group4.fruitopia.databinding.ActivityRegisterBinding
+import com.group4.fruitopia.login.LoginActivity
 import com.group4.fruitopia.model.User
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,6 +35,11 @@ class RegisterActivity : AppCompatActivity() {
             insets
         }
 
+        binding.tvLoginHere.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.buttonSignUp.setOnClickListener {
             addUser()
         }
@@ -48,6 +54,12 @@ class RegisterActivity : AppCompatActivity() {
             Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
             return
         }
+
+        if (password.length < 8) {
+            Toast.makeText(this, "Password must be at least 8 characters", Toast.LENGTH_SHORT).show()
+            return
+        }
+
 
         val apiService = ApiClient.getClient?.create(ApiService::class.java)
         val user = User(email = email, nama = nama, password = password)

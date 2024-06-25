@@ -5,4 +5,6 @@
     <string name="text_next">NEXT</string>
     <string name="text_not_registered_yet_register_here">Not registered yet? Register Here</string>
     <string name="text_name_app">FRUITOPIA</string>
+    <string name="text_sign_up">Sign Up</string>
+    <string name="text_sign_in">Sign In</string>
 </resources>
