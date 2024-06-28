@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".order.OrderActivity">
+
+    <ImageView
+        android:id="@+id/iv_fruit"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        tools:src="@tools:sample/avatars"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Text Nama Buah -->
+    <TextView
+        android:id="@+id/textNamaBuah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama Buah"
+        app:layout_constraintTop_toBottomOf="@id/iv_fruit"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"/>
+
+    <!-- Text Harga -->
+    <TextView
+        android:id="@+id/textHarga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Harga"
+        app:layout_constraintTop_toBottomOf="@id/textNamaBuah"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"/>
+
+    <!-- Edit Text Nama -->
+    <EditText
+        android:id="@+id/editTextNamaPenerima"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Nama"
+        app:layout_constraintTop_toBottomOf="@id/textHarga"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"/>
+
+
+    <!-- Edit Text Alamat -->
+    <EditText
+        android:id="@+id/editTextAlamat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Alamat"
+        app:layout_constraintTop_toBottomOf="@id/editTextNamaPenerima"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"/>
+
+    <CalendarView
+        android:id="@+id/calender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAlamat"/>
+    <Button
+        android:id="@+id/button_pesan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/light_brown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="50dp"
+        android:text="PESAN"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="40dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:textColor="@color/app_color_on_primary"
+        android:textSize="16sp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

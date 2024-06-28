@@ -28,4 +28,9 @@
     <string name="text_detail_product">Detail Produk</string>
     <string name="text_number_count">1</string>
     <string name="text_header_detail">Detail Produk</string>
+
+    <string name="text_not_registered_yet_register_here">Not registered yet? Register Here</string>
+    <string name="text_name_app">FRUITOPIA</string>
+    <string name="text_sign_up">Sign Up</string>
+    <string name="text_sign_in">Sign In</string>
 </resources>

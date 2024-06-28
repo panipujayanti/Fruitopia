@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.group4.fruitopia.MainActivity;
 import com.group4.fruitopia.R;
+import com.group4.fruitopia.onboarding.OnBoardingActivity;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashScreenActivity extends AppCompatActivity {
@@ -28,7 +29,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     private void goToMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, OnBoardingActivity.class);
         startActivity(intent);
         finish();
     }

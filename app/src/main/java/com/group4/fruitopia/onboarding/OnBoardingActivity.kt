@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.group4.fruitopia.MainActivity
 import com.group4.fruitopia.R
 import com.group4.fruitopia.databinding.ActivityOnBoardingBinding
+import com.group4.fruitopia.login.LoginActivity
 import com.group4.fruitopia.onboarding.adapter.OnBoardingAdapter
 
 
@@ -63,7 +64,7 @@ class OnBoardingActivity : AppCompatActivity() {
             if (currentItem < (viewPager.adapter?.itemCount ?: 0) - 1) {
                 viewPager.setCurrentItem(currentItem + 1, true)
             } else {
-                MainActivity.navigate(this)
+                navigateToLoginActivity()
             }
         }
 
@@ -72,6 +73,11 @@ class OnBoardingActivity : AppCompatActivity() {
                 updatePageIndicator(position)
             }
         })
+    }
+
+    private fun navigateToLoginActivity() {
+        startActivity(Intent(this, LoginActivity::class.java))
+        finish()
     }
 
     private fun createPageIndicator() {

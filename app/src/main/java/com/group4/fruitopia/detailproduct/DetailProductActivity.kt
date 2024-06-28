@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.group4.fruitopia.R
+import com.group4.fruitopia.order.OrderActivity
 import com.group4.fruitopia.utils.toCurrencyFormat
 
 class DetailProductActivity : AppCompatActivity() {
@@ -59,16 +61,19 @@ class DetailProductActivity : AppCompatActivity() {
 
         val addToCartButton: Button = findViewById(R.id.button_add_to_cart)
         addToCartButton.setOnClickListener {
-            val resultIntent = Intent().apply {
-                putExtra("product_name", productName)
-                putExtra("product_price", productPrice)
-                putExtra("product_image", productImage)
-            }
-            setResult(RESULT_OK, resultIntent)
-            finish()
+            navigateToOrderActivity(productName, productPrice, productImage)
         }
     }
 
+    private fun navigateToOrderActivity(productName: String?, productPrice: String?, productImage: String?) {
+        val intent = Intent(this, OrderActivity::class.java).apply {
+            putExtra("product_name", productName)
+            putExtra("product_price", productPrice)
+            putExtra("product_image", productImage)
+        }
+        startActivity(intent)
+        finish()
+    }
 
     private fun calculateTotalPrice(): String {
         val totalPrice = quantity * pricePerItem
