@@ -36,4 +36,9 @@
     <string name="text_total_date">Tanggal Transaksi</string>
     <string name="detail_order">Alamat Pengiriman</string>
     <string name="text_header_riwayat">Riwayat Transaksi</string>
+    <string name="text_email">Email</string>
+    <string name="text_nama">Nama</string>
+    <string name="text_update_profile">Update Profile</string>
+    <string name="text_log_out">Log-out</string>
+    <string name="text_header_profile">Profile</string>
 </resources>

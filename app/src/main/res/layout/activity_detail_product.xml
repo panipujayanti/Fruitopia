@@ -150,7 +150,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_product"
-            android:text="Nikmati kelezatan buah-buahan segar yang dipetik langsung dari kebun petani terbaik. Alpukat kami dipilih dengan cermat untuk memastikan kualitas terbaik, kelembutan, dan rasa yang kaya. Setiap buah dipetik pada saat matang sempurna, memberikan Anda cita rasa yang alami dan tekstur yang creamy. Cocok untuk dinikmati langsung, dijadikan jus, atau diolah menjadi berbagai hidangan sehat. "
+            android:text="Nikmati kelezatan buah-buahan segar yang dipetik langsung dari kebun petani terbaik. Buah kami dipilih dengan cermat untuk memastikan kualitas terbaik, kelembutan, dan rasa yang kaya. Setiap buah dipetik pada saat matang sempurna, memberikan Anda cita rasa yang alami. Cocok untuk dinikmati langsung, dijadikan jus, atau diolah menjadi berbagai hidangan sehat. "
             android:layout_marginStart="18dp"
             android:layout_marginEnd="60dp"
             android:fontFamily="@font/open_sans"
