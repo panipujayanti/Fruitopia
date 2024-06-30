@@ -28,11 +28,10 @@
 
         <TextView
             android:id="@+id/tv_header_detail"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="18dp"
             android:text="@string/text_header_detail"
             android:textColor="@color/app_color_on_primary"
             android:fontFamily="@font/open_sans_bold"
@@ -48,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/cl_action_bar"
-        android:layout_marginVertical="26dp">
+        android:layout_marginVertical="50dp">
 
         <ImageView
             android:id="@+id/iv_product"
@@ -75,7 +74,7 @@
                 android:layout_height="wrap_content"
                 tools:text="Rp. 18.000"
                 android:fontFamily="@font/open_sans_bold"
-                android:textSize="18sp"
+                android:textSize="22sp"
                 android:layout_marginHorizontal="18dp"
                 android:textColor="@color/app_color_on_primary"/>
 
@@ -116,7 +115,7 @@
                         android:text="@string/text_number_count"
                         android:fontFamily="@font/open_sans"
                         android:textStyle="bold"
-                        android:textSize="20sp" />
+                        android:textSize="24sp" />
                     <ImageView
                         android:id="@+id/iv_plus"
                         android:layout_width="30dp"
@@ -141,7 +140,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Avocado"
             android:fontFamily="@font/open_sans_bold"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:layout_marginHorizontal="18dp"
             android:textColor="@color/app_color_on_primary"/>
 
@@ -153,9 +152,9 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_product"
             android:text="Nikmati kelezatan buah-buahan segar yang dipetik langsung dari kebun petani terbaik. Alpukat kami dipilih dengan cermat untuk memastikan kualitas terbaik, kelembutan, dan rasa yang kaya. Setiap buah dipetik pada saat matang sempurna, memberikan Anda cita rasa yang alami dan tekstur yang creamy. Cocok untuk dinikmati langsung, dijadikan jus, atau diolah menjadi berbagai hidangan sehat. "
             android:layout_marginStart="18dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="60dp"
             android:fontFamily="@font/open_sans"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:layout_marginTop="10dp"
             android:justificationMode="inter_word"
             android:textColor="@color/app_color_on_primary"/>
@@ -165,16 +164,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/light_brown"
-            app:layout_constraintTop_toBottomOf="@+id/tv_desk_product"
+            app:layout_constraintTop_toBottomOf="@id/tv_desk_product"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="20dp"
             android:text="PESAN"
             android:paddingVertical="12dp"
             android:paddingHorizontal="40dp"
             android:fontFamily="@font/open_sans_bold"
             android:textColor="@color/app_color_on_primary"
-            android:textSize="16sp"/>
+            android:textSize="18sp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

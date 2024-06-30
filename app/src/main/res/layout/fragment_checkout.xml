@@ -27,14 +27,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_header_checkout"
+            android:id="@+id/tv_header_riwayat"
             style="@style/TextAppearance.Material3.TitleLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_bold"
             android:gravity="center"
             android:padding="18dp"
-            android:text="@string/text_header_checkout"
+            android:text="@string/text_header_riwayat"
             android:textColor="@color/app_color_on_primary"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -44,12 +44,23 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <include
-        android:id="@+id/layout_content"
-        layout="@layout/layout_section_content_order"
+    <LinearLayout
+        android:id="@+id/ll_item_menu"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cl_action_bar" />
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/cl_action_bar">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="108dp"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_cart_product_order"
+            tools:spanCount="1" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

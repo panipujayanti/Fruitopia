@@ -34,7 +34,7 @@
                 android:fontFamily="@font/open_sans_bold"
                 android:text="@string/text_header_name"
                 android:textColor="@color/app_color_on_primary"
-                android:textSize="18dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -44,7 +44,7 @@
                 android:fontFamily="@font/open_sans"
                 android:text="@string/text_header_greeting"
                 android:textColor="@color/app_color_on_primary"
-                android:textSize="14dp" />
+                android:textSize="16dp" />
         </LinearLayout>
 
         <ImageView
@@ -86,7 +86,7 @@
                     android:fontFamily="@font/open_sans_bold"
                     android:text="@string/text_discount"
                     android:textColor="@color/app_color_on_primary"
-                    android:textSize="16dp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -97,7 +97,7 @@
                     android:fontFamily="@font/open_sans"
                     android:text="@string/text_discount_desc"
                     android:textColor="@color/app_color_on_primary"
-                    android:textSize="12sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <ImageView
@@ -137,7 +137,7 @@
                 android:fontFamily="@font/open_sans_bold"
                 android:text="@string/text_product_name"
                 android:textColor="@color/app_color_on_primary"
-                android:textSize="18dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -147,7 +147,7 @@
                 android:fontFamily="@font/open_sans"
                 android:text="@string/text_product_greeting"
                 android:textColor="@color/app_color_on_primary"
-                android:textSize="14dp" />
+                android:textSize="16dp" />
         </LinearLayout>
 
         <ImageView

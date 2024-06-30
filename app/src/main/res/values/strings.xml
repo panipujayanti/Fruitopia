@@ -33,4 +33,7 @@
     <string name="text_name_app">FRUITOPIA</string>
     <string name="text_sign_up">Sign Up</string>
     <string name="text_sign_in">Sign In</string>
+    <string name="text_total_date">Tanggal Transaksi</string>
+    <string name="detail_order">Alamat Pengiriman</string>
+    <string name="text_header_riwayat">Riwayat Transaksi</string>
 </resources>

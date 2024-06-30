@@ -9,12 +9,16 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
     //product
     @GET("get_products.php")
     fun getProduct(): Call<List<Product>>
+
+    @GET("user/{id}")
+    fun getUser(@Path("id") userId: Int): Call<User>
 
     //user
     @POST("insert_user.php")
@@ -44,12 +48,8 @@ interface ApiService {
         @Field("password") password: String
     ): Call<UserResponse>
 
-    //order
-    @POST("input_barang.php")
+    @POST("input_produk.php")
     fun inputOrder(@Body order: Order): Call<Void>
-
-    @POST("input_barang.php")
-    fun inputBarang(@Body order: Order): Call<ApiResponse>
 }
 
 data class UserResponse(
@@ -60,11 +60,6 @@ data class UserResponse(
 
 data class UpdateResponse(
      val status: String,
-    val message: String
-)
-
-data class ApiResponse(
-    val status: String,
     val message: String
 )
 

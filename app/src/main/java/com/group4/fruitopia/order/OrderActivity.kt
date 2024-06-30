@@ -14,29 +14,50 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import android.util.Log
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.group4.fruitopia.R
+import com.group4.fruitopia.utils.toCurrencyFormat
 
 class OrderActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityOrderBinding
+    private var productQuantity: Int = 1
+    private var pricePerItem: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val ivBack: ImageView = findViewById(R.id.iv_back)
+        ivBack.setOnClickListener {
+            onBackPressed()
+        }
+
         val productName = intent.getStringExtra("product_name")
         val productPrice = intent.getStringExtra("product_price")
+        val productImage = intent.getStringExtra("product_image")
+        productQuantity = intent.getIntExtra("product_quantity", 1)
+        pricePerItem = intent.getStringExtra("price_per_item")?.toIntOrNull() ?: 0
+
 
         binding.textNamaBuah.text = productName
-        binding.textHarga.text = productPrice
+        binding.textHarga.text = pricePerItem.toCurrencyFormat()
+        Glide.with(this).load(productImage).into(binding.ivFruit)
+        binding.textQty.text = "x$productQuantity"
+        binding.tvTotalHarga.text = productPrice
+
+        val currentDate = getCurrentDate()
+        binding.textTanggal.text = currentDate
 
         binding.buttonPesan.setOnClickListener {
             val nama = binding.editTextNamaPenerima.text.toString()
             val alamat = binding.editTextAlamat.text.toString()
-            val tanggal = getSelectedDate() // Mendapatkan tanggal dari CalendarView
 
-            if (nama.isEmpty() || alamat.isEmpty() || tanggal.isEmpty()) {
-                Toast.makeText(this, "Nama, Alamat, dan Tanggal harus diisi", Toast.LENGTH_SHORT).show()
+            if (nama.isEmpty() || alamat.isEmpty()) {
+                Toast.makeText(this, "Nama dan Alamat tidak boleh kosong!", Toast.LENGTH_SHORT)
+                    .show()
                 return@setOnClickListener
             }
 
@@ -45,7 +66,8 @@ class OrderActivity : AppCompatActivity() {
                 harga = productPrice ?: "",
                 nama_penerima = nama,
                 alamat = alamat,
-                tanggal = tanggal
+                tanggal = currentDate,
+                jumlah_barang = productQuantity
             )
 
             inputOrder(order)
@@ -62,23 +84,28 @@ class OrderActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     Toast.makeText(this@OrderActivity, "Order berhasil", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this@OrderActivity, "Gagal melakukan order", Toast.LENGTH_SHORT).show()
-                    Log.e("OrderActivity", "Failed to place order: ${response.errorBody()?.string()}")
+                    Toast.makeText(this@OrderActivity, "Gagal melakukan order", Toast.LENGTH_SHORT)
+                        .show()
+                    Log.e(
+                        "OrderActivity",
+                        "Failed to place order: ${response.errorBody()?.string()}"
+                    )
                 }
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                Toast.makeText(this@OrderActivity, "Gagal melakukan order: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@OrderActivity,
+                    "Gagal melakukan order: ${t.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
                 Log.e("OrderActivity", "Error placing order", t)
             }
         })
     }
 
-    // Fungsi untuk mendapatkan tanggal yang dipilih dari CalendarView
-    private fun getSelectedDate(): String {
-        val calendarView = binding.calender
-        val date = Date(calendarView.date)
-        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        return sdf.format(date)
+    private fun getCurrentDate(): String {
+        val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        return sdf.format(Date())
     }
 }
