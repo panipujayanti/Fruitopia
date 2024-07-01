@@ -1,6 +1,8 @@
 package com.group4.fruitopia.order
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.group4.fruitopia.data.model.Order
@@ -10,18 +12,18 @@ import com.group4.fruitopia.databinding.ActivityOrderBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import android.util.Log
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.group4.fruitopia.R
 import com.group4.fruitopia.utils.toCurrencyFormat
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class OrderActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityOrderBinding
+    private var transactionId: Int = -1
     private var productQuantity: Int = 1
     private var pricePerItem: Int = 0
 
@@ -35,12 +37,15 @@ class OrderActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        transactionId = intent.getIntExtra("transaction_id", -1)
         val productName = intent.getStringExtra("product_name")
-        val productPrice = intent.getStringExtra("product_price")
         val productImage = intent.getStringExtra("product_image")
+        val pricePerItem = intent.getStringExtra("price_per_item")?.toIntOrNull() ?: 0
+        val productPrice = intent.getStringExtra("product_price")
         productQuantity = intent.getIntExtra("product_quantity", 1)
-        pricePerItem = intent.getStringExtra("price_per_item")?.toIntOrNull() ?: 0
-
+        val namaPenerima = intent.getStringExtra("nama_penerima")
+        val alamat = intent.getStringExtra("alamat")
+        val tanggal = intent.getStringExtra("tanggal")
 
         binding.textNamaBuah.text = productName
         binding.textHarga.text = pricePerItem.toCurrencyFormat()
@@ -50,27 +55,46 @@ class OrderActivity : AppCompatActivity() {
 
         val currentDate = getCurrentDate()
         binding.textTanggal.text = currentDate
+        binding.editTextNamaPenerima.setText(namaPenerima)
+        binding.editTextAlamat.setText(alamat)
+
+        binding.buttonPesan.text =
+            if (transactionId != -1) getString(R.string.text_update) else getString(R.string.text_order)
+        binding.tvHeaderCheckout.text =
+            if (transactionId != -1) getString(R.string.text_header_update) else getString(R.string.text_header_checkout)
+        if (transactionId != -1) {
+            binding.ivFruit.visibility = View.GONE
+        } else {
+            binding.ivFruit.visibility = View.VISIBLE
+        }
 
         binding.buttonPesan.setOnClickListener {
-            val nama = binding.editTextNamaPenerima.text.toString()
-            val alamat = binding.editTextAlamat.text.toString()
+            val updatedNama = binding.editTextNamaPenerima.text.toString()
+            val updatedAlamat = binding.editTextAlamat.text.toString()
 
-            if (nama.isEmpty() || alamat.isEmpty()) {
+            if (updatedNama.isEmpty() || updatedAlamat.isEmpty()) {
                 Toast.makeText(this, "Nama dan Alamat tidak boleh kosong!", Toast.LENGTH_SHORT)
                     .show()
                 return@setOnClickListener
             }
 
             val order = Order(
+                id = if (transactionId != -1) transactionId else null,
                 nama_buah = productName ?: "",
                 harga = productPrice ?: "",
-                nama_penerima = nama,
-                alamat = alamat,
+                nama_penerima = updatedNama,
+                alamat = updatedAlamat,
                 tanggal = currentDate,
-                jumlah_barang = productQuantity
+                jumlah_barang = productQuantity,
+                product_image = productImage.toString(),
+                price_per_item = pricePerItem.toString()
             )
 
-            inputOrder(order)
+            if (transactionId != -1) {
+                updateOrder(order)
+            } else {
+                inputOrder(order)
+            }
         }
     }
 
@@ -86,10 +110,6 @@ class OrderActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(this@OrderActivity, "Gagal melakukan order", Toast.LENGTH_SHORT)
                         .show()
-                    Log.e(
-                        "OrderActivity",
-                        "Failed to place order: ${response.errorBody()?.string()}"
-                    )
                 }
             }
 
@@ -99,7 +119,36 @@ class OrderActivity : AppCompatActivity() {
                     "Gagal melakukan order: ${t.message}",
                     Toast.LENGTH_SHORT
                 ).show()
-                Log.e("OrderActivity", "Error placing order", t)
+            }
+        })
+    }
+
+    private fun updateOrder(order: Order) {
+        val apiService = ApiClient.client?.create(ApiService::class.java)
+        val call: Call<Void>? = apiService?.updateOrder(order)
+
+        call?.enqueue(object : Callback<Void> {
+
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(this@OrderActivity, "Update order berhasil", Toast.LENGTH_SHORT)
+                        .show()
+                    finish()
+                } else {
+                    Toast.makeText(
+                        this@OrderActivity,
+                        "Gagal melakukan update order",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Toast.makeText(
+                    this@OrderActivity,
+                    "Gagal melakukan update order: ${t.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }

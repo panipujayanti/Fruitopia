@@ -41,4 +41,14 @@
     <string name="text_update_profile">Update Profile</string>
     <string name="text_log_out">Log-out</string>
     <string name="text_header_profile">Profile</string>
+    <string name="text_nama_buah">Nama Buah:</string>
+    <string name="text_total_quantity">Jumlah Buah:</string>
+    <string name="text_nama_penerima">Nama Penerima:</string>
+    <string name="text_alamat">Alamat:</string>
+    <string name="text_total_price_history">Total Harga:</string>
+    <string name="text_date">Tanggal Transaksi:</string>
+    <string name="text_update">Update</string>
+    <string name="text_delete">Delete</string>
+    <string name="text_price_per_item">Harga Satuan:</string>
+    <string name="text_header_update">Update Pesanan</string>
 </resources>
