@@ -2,13 +2,16 @@ package com.group4.fruitopia.data.service
 
 import com.group4.fruitopia.data.model.Order
 import com.group4.fruitopia.data.model.Product
+import com.group4.fruitopia.data.model.Transaction
 import com.group4.fruitopia.data.model.User
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -50,6 +53,15 @@ interface ApiService {
 
     @POST("input_produk.php")
     fun inputOrder(@Body order: Order): Call<Void>
+
+    @PUT("update_order.php")
+    fun updateOrder(@Body order: Order): Call<Void>
+
+    @GET("get_transactions.php")
+    fun getTransactions(): Call<List<Transaction>>
+
+    @DELETE("delete_transaction.php")
+    fun deleteTransaction(@Query("id") transactionId: Int): Call<Void>
 }
 
 data class UserResponse(

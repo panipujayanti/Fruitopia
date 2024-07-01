@@ -24,7 +24,7 @@ class ProductAdapter(
         val layoutRes = if (adapterLayoutMode == AdapterLayoutMode.GRID) {
             R.layout.item_menu
         } else {
-            R.layout.item_cart_product_order
+            R.layout.item_transaction
         }
         val view = LayoutInflater.from(parent.context).inflate(layoutRes, parent, false)
         return UserViewHolder(view)
