@@ -1,11 +1,14 @@
 package com.group4.fruitopia.home
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +19,7 @@ import com.group4.fruitopia.data.service.ApiClient
 import com.group4.fruitopia.data.service.ApiService
 import com.group4.fruitopia.home.adapter.AdapterLayoutMode
 import com.group4.fruitopia.home.adapter.ProductAdapter
+import com.group4.fruitopia.profile.ProfileFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,6 +42,16 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = productAdapter
 
         fetchProduct()
+
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(
+            ProfileFragment.SharedPrefConstants.SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val userName = sharedPreferences.getString("user_name", "Guest")
+
+        // Gabungkan string "Hello, " dengan nama pengguna
+        val greeting = "Hello, $userName"
+
+        // Tampilkan greeting di TextView
+        view.findViewById<TextView>(R.id.tv_header_name).text = greeting
 
         val ivSeeAll: ImageView = view.findViewById(R.id.iv_see_all)
         ivSeeAll.setOnClickListener {

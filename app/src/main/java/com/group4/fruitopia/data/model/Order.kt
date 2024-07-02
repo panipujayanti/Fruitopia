@@ -3,7 +3,6 @@ package com.group4.fruitopia.data.model
 data class Order(
     val id: Int?,
     val nama_buah: String,
-    val product_image: String,
     val price_per_item: String,
     val harga: String,
     val nama_penerima: String,

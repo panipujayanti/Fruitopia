@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_color_primary"
+    tools:context=".order.UpdateOrderActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_with_image_actionbar"
+        android:elevation="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_header_update"
+            style="@style/TextAppearance.Material3.TitleLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_bold"
+            android:gravity="center"
+            android:padding="18dp"
+            android:text="@string/text_header_update"
+            android:textColor="@color/app_color_on_primary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/sv_home_page"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cv_section_order"
+        app:layout_constraintTop_toBottomOf="@id/cl_action_bar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_detail_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardBackgroundColor="@color/app_color_primary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_title_detail_update_order"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14dp"
+                        android:fontFamily="@font/open_sans_bold"
+                        android:text="@string/detail_update_order"
+                        android:textColor="@color/app_color_on_primary"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/tv_label_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/open_sans"
+                            android:text="@string/text_total_date"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/app_color_on_primary"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/textTanggal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/open_sans"
+                            android:maxLines="1"
+                            android:text="29-05-2024"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/app_color_on_primary"
+                            android:textSize="16dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_nama_buah"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/tv_label_nama_buah"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/open_sans"
+                            android:text="@string/text_nama_buah"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/app_color_on_primary"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/textNamaBuah"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/open_sans"
+                            android:maxLines="1"
+                            android:text="Alpukat"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/app_color_on_primary"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_total_quantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/tv_label_total_quantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/open_sans"
+                            android:text="@string/text_total_quantity"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/app_color_on_primary"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/textQty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/open_sans"
+                            android:maxLines="1"
+                            android:text="3"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/app_color_on_primary"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_price_per_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/tv_label_price_per_item"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/open_sans"
+                            android:text="@string/text_price_per_item"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/app_color_on_primary"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/textHarga"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/open_sans"
+                            android:maxLines="1"
+                            android:text="Rp. 10.000"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/app_color_on_primary"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_total_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/tv_label_total_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/open_sans"
+                            android:text="@string/text_total_price"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/app_color_on_primary"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/tv_total_harga"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:maxLines="1"
+                            android:text="Rp. 200.000"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/app_color_on_primary"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/vw_line_1"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/dotted_line"
+                app:layout_constraintTop_toBottomOf="@id/cl_detail_order" />
+
+            <View
+                android:id="@+id/vw_line_2"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@drawable/dotted_line"
+                app:layout_constraintTop_toBottomOf="@id/vw_line_1" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_update_detail_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="24dp"
+                app:cardBackgroundColor="@color/app_color_primary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vw_line_1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_title_update_detail_order"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/open_sans_bold"
+                        android:text="@string/detail_order"
+                        android:textColor="@color/app_color_on_primary"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/editTextNamaPenerima"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_background"
+                        android:hint="Nama"
+                        android:padding="12dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTanggal" />
+
+                    <!-- Edit Text Alamat -->
+                    <EditText
+                        android:id="@+id/editTextAlamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edittext_background"
+                        android:hint="Alamat"
+                        android:padding="12dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/editTextNamaPenerima" />
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_section_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/app_color_primary"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/vw_line_4"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/white"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:backgroundTint="@color/app_color_secondary"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="@string/text_update"
+                android:textColor="@color/app_color_on_primary"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

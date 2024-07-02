@@ -10,7 +10,7 @@ import com.group4.fruitopia.R
 import com.group4.fruitopia.data.model.Transaction
 
 class TransactionAdapter(
-    private val transactionList: List<Transaction>,
+    private val transactionList: MutableList<Transaction>,
     private val updateButtonClickListener: UpdateButtonClickListener,
     private val deleteButtonClickListener: DeleteButtonClickListener
 ) : RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
@@ -37,6 +37,14 @@ class TransactionAdapter(
         return transactionList.size
     }
 
+    fun removeTransaction(transaction: Transaction) {
+        val position = transactionList.indexOf(transaction)
+        if (position != -1) {
+            transactionList.removeAt(position)
+            notifyItemRemoved(position)
+        }
+    }
+
     inner class TransactionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val namaBuah: TextView = itemView.findViewById(R.id.tv_nama_buah)
         private val totalQuantity: TextView = itemView.findViewById(R.id.tv_total_quantity)
@@ -56,13 +64,6 @@ class TransactionAdapter(
             namaPenerima.text = transaction.nama_penerima
             alamat.text = transaction.alamat
             tanggal.text = transaction.tanggal
-
-            buttonUpdate.setOnClickListener {
-                updateButtonClickListener.onUpdateButtonClick(transaction)
-            }
-            buttonDelete.setOnClickListener {
-                deleteButtonClickListener.onDeleteButtonClick(transaction)
-            }
         }
     }
 

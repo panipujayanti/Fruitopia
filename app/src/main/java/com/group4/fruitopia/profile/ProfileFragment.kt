@@ -74,6 +74,13 @@ class ProfileFragment : Fragment() {
                         nama = userProfile.nama
                         email = userProfile.email
                         password = userProfile.password
+
+                        // Simpan nama ke SharedPreferences
+                        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(SharedPrefConstants.SHARED_PREF_NAME, Context.MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("user_name", nama)
+                        editor.apply()
+
                         Log.d("ProfileFragment", "User: ${userProfile.nama}, Email: ${userProfile.email}")
                         view.findViewById<TextView>(R.id.nama).text = nama
                         view.findViewById<TextView>(R.id.email).text = email
@@ -90,6 +97,7 @@ class ProfileFragment : Fragment() {
             }
         })
     }
+
 
     private fun setupLogout(view: View) {
         view.findViewById<View>(R.id.ll_logout).setOnClickListener {
