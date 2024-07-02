@@ -16,17 +16,14 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-    //product
     @GET("get_products.php")
     fun getProduct(): Call<List<Product>>
 
     @GET("user/{id}")
     fun getUser(@Path("id") userId: Int): Call<User>
 
-    //user
     @POST("insert_user.php")
     fun insertUser(@Body user: User): Call<Void>
-
 
     @FormUrlEncoded
     @POST("update_profile.php")
@@ -42,7 +39,6 @@ interface ApiService {
     fun profileUser(
         @Field("user_id") userId: String,
     ): Call<UserResponse>
-
 
     @FormUrlEncoded
     @POST("get_user_by_email.php")

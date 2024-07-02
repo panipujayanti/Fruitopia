@@ -66,13 +66,13 @@ class DetailProductActivity : AppCompatActivity() {
     }
 
     private fun navigateToOrderActivity(productName: String?, productPrice: String?, productImage: String?) {
-        val totalPrice = calculateTotalPrice() // Menghitung total harga
+        val totalPrice = calculateTotalPrice()
         val intent = Intent(this, OrderActivity::class.java).apply {
             putExtra("product_name", productName)
-            putExtra("product_price", totalPrice) // Mengirim total harga
+            putExtra("product_price", totalPrice)
             putExtra("product_image", productImage)
             putExtra("product_quantity", quantity)
-            putExtra("price_per_item", pricePerItem.toString()) // Mengirim harga per item
+            putExtra("price_per_item", pricePerItem.toString())
         }
         startActivity(intent)
         finish()

@@ -1,11 +1,14 @@
 package com.group4.fruitopia.history
 
+import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +17,7 @@ import com.group4.fruitopia.data.model.Transaction
 import com.group4.fruitopia.data.service.ApiClient
 import com.group4.fruitopia.data.service.ApiService
 import com.group4.fruitopia.history.adapter.TransactionAdapter
-import com.group4.fruitopia.order.OrderActivity
+import com.group4.fruitopia.order.UpdateOrderActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,29 +52,27 @@ class HistoryFragment : Fragment(), TransactionAdapter.UpdateButtonClickListener
                     val transactionList = response.body()
                     if (transactionList != null) {
                         transactionAdapter = TransactionAdapter(
-                            transactionList,
+                            transactionList.toMutableList(),
                             this@HistoryFragment,
                             this@HistoryFragment
                         )
                         recyclerView.adapter = transactionAdapter
                     }
                 } else {
-                    Toast.makeText(context, "Failed to fetch transactions", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(context, "Gagal mengambil data transaksi", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<List<Transaction>>, t: Throwable) {
-                Toast.makeText(context, "Failed to fetch transactions", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Gagal mengambil data transaksi", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     override fun onUpdateButtonClick(transaction: Transaction) {
-        val intent = Intent(requireContext(), OrderActivity::class.java).apply {
+        val intent = Intent(requireContext(), UpdateOrderActivity::class.java).apply {
             putExtra("transaction_id", transaction.id)
             putExtra("product_name", transaction.nama_buah)
-            putExtra("product_image", transaction.product_image)
             putExtra("price_per_item", transaction.price_per_item)
             putExtra("product_price", transaction.harga)
             putExtra("product_quantity", transaction.jumlah_barang)
@@ -83,32 +84,41 @@ class HistoryFragment : Fragment(), TransactionAdapter.UpdateButtonClickListener
     }
 
     override fun onDeleteButtonClick(transaction: Transaction) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Konfirmasi")
+        builder.setMessage("Apakah Anda yakin ingin menghapus transaksi ini?")
+        builder.setPositiveButton("Iya") { dialog, which ->
+            deleteTransaction(transaction)
+        }
+        builder.setNegativeButton("Tidak") { dialog, which ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
+        val colorOnPrimary = ContextCompat.getColor(requireContext(), R.color.app_color_on_primary)
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(colorOnPrimary)
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(colorOnPrimary)
+    }
+
+    private fun deleteTransaction(transaction: Transaction) {
         val apiService = ApiClient.client?.create(ApiService::class.java)
         apiService?.deleteTransaction(transaction.id)?.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(context, "Transaction deleted successfully", Toast.LENGTH_SHORT)
-                        .show()
-                    fetchTransactions()
+                    Toast.makeText(context, "Transaksi berhasil dihapus", Toast.LENGTH_SHORT).show()
+                    transactionAdapter.removeTransaction(transaction)
                 } else {
                     val errorBody = response.errorBody()?.string()
-                    Toast.makeText(
-                        context,
-                        "Failed to delete transaction: $errorBody",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(context, "Gagal menghapus transaksi: $errorBody", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                Toast.makeText(
-                    context,
-                    "Failed to delete transaction: ${t.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(context, "Gagal menghapus transaksi: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
+
 
     override fun onResume() {
         super.onResume()
